@@ -1,11 +1,109 @@
 <!DOCTYPE html>
-<html th:replace="layout/masterlayout :: layout(~{::main})"
-      xmlns:th="http://www.thymeleaf.org">
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
 
 
 <body>
+
 <main role="main">
-   <h1 class="text-center text-primary mt-5">Hello</h1>
+   <section class="bg-primary text-white py-3">
+      <div class="container">
+         <h1><i class="fas fa-cog me-2"></i>Dashboard</h1>
+      </div>
+   </section>
+
+   <section class="bg-light py-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-3">
+               <a href="#"  class="btn btn-primary w-100 rounded"><i class="fas fa-plus me-2"></i>Add Post</a>
+            </div>
+            <div class="col-md-3">
+               <a href="#" data-bs-toggle="modal" data-bs-target="#addCateogryModal" class="btn btn-success w-100 rounded"><i class="fas fa-plus me-2"></i>Add Category</a>
+            </div>
+            <div class="col-md-3">
+               <a href="#" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-warning w-100 rounded"><i class="fas fa-plus me-2"></i>Add User</a>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+      </div>
+   </section>
+
+   <!--        User Modal-->
+   <section>
+      <div id="addUserModal" class="modal fade" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <form th:action="@{/save-user}" th:object="${user}" method="post">
+                  <div class="modal-header text-white bg-warning">
+                     <h5 class="modal-title">Add User</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal">
+
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input id="name" type="text" class="form-control"
+                               th:field="*{name}"
+                        >
+                     </div>
+
+                     <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" type="email" class="form-control"
+                               th:field="*{email}"
+                        >
+                     </div>
+
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn bg-warning">Save changes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--        Category Modal-->
+   <section>
+      <div id="addCateogryModal" class="modal fade" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <form th:action="@{/save-category}" th:object="${category}" method="post">
+                  <div class="modal-header text-white bg-success">
+                     <h5 class="modal-title">Add Cateogry</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal">
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input id="title" type="text" class="form-control"
+                               th:field="*{title}"
+                        >
+                     </div>
+
+                     <div class="mb-3">
+                        <label for="date" class="form-label">Date Created</label>
+                        <input id="date" type="date" class="form-control"
+                               th:field="*{startDate}"
+                        >
+                     </div>
+
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+
 </main>
+
 </body>
 </html>
